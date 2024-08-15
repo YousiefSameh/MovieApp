@@ -51,6 +51,7 @@ header input[type="text"]:focus {
 }
 
 /* Movie Card Styles */
+/* Movie Card Styles */
 .movie {
   background: linear-gradient(145deg, #34495e, #2c3e50);
   border-radius: 15px;
@@ -61,32 +62,11 @@ header input[type="text"]:focus {
   justify-content: space-between;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 100%;
-  position: relative;
+  position: relative; /* Positioning context for the overlay */
   z-index: 0;
 }
 
-.movie:hover {
-  transform: scale(1.08);
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
-}
-
-.movie:hover:before {
-  opacity: 1;
-}
-
-.movie:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  transition: opacity 0.3s ease;
-  opacity: 0;
-  z-index: -1;
-}
-
+/* Movie Image Styles */
 .movie img {
   width: 100%;
   height: 400px;
@@ -95,10 +75,27 @@ header input[type="text"]:focus {
   transition: transform 0.3s ease;
 }
 
-.movie:hover img {
-  transform: scale(1.1);
+/* Overlay Styles */
+.overview {
+  padding: 20px;
+  background-color: rgba(44, 62, 80, 0.95); /* Slight transparency */
+  color: #bdc3c7;
+  border-radius: 0 0 15px 15px;
+  position: absolute; /* Positioned relative to .movie */
+  bottom: 0; /* Aligns the .overview to the bottom of the .movie */
+  left: 0;
+  right: 0;
+  z-index: 1; /* Ensure it appears above other content */
+  transform: translateY(100%); /* Initially hide below the card */
+  transition: transform 0.3s ease;
 }
 
+/* Show Overview on Hover */
+.movie:hover .overview {
+  transform: translateY(0); /* Move up to show the overview */
+}
+
+/* Movie Info Styles */
 .movie-info {
   padding: 20px;
   display: flex;
@@ -138,29 +135,4 @@ header input[type="text"]:focus {
 
 .movie-info span:hover {
   transform: scale(1.1);
-}
-
-.overview {
-  padding: 20px;
-  background-color: #2c3e50;
-  color: #bdc3c7;
-  display: none;
-  border-radius: 0 0 15px 15px;
-  flex-grow: 1;
-}
-
-.overview h3 {
-  font-size: 20px;
-  margin-bottom: 15px;
-}
-
-.overview p {
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-/* Show Overview on Hover */
-.movie:hover .overview {
-  display: block;
-  background-color: rgba(44, 62, 80, 0.95); /* Slight transparency on hover */
 }
